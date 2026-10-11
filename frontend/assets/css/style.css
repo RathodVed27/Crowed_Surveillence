@@ -1,0 +1,249 @@
+/*=========================================================
+AI Crowd Surveillance Dashboard
+Professional Enterprise Theme
+Author : Ved Rathod
+=========================================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/*=========================================================
+ROOT VARIABLES
+=========================================================*/
+
+:root {
+    --bg: #0f1419;
+    --surface: #1a1f2e;
+    --surface-raised: #212736;
+    --border: #2a3142;
+    --border-light: #333d52;
+    --primary: #3B82F6;
+    --primary-muted: rgba(59, 130, 246, 0.15);
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --text-secondary: #8b95a5;
+    --text-muted: #5c6370;
+    --radius: 8px;
+    --radius-lg: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.3);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/*=========================================================
+RESET
+=========================================================*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+/*=========================================================
+GRID
+=========================================================*/
+
+.dashboard-wrapper {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/*=========================================================
+MAIN CONTENT
+=========================================================*/
+
+.main-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    transition: margin-left 0.2s ease;
+}
+
+/*=========================================================
+PAGE CONTENT
+=========================================================*/
+
+.page-content {
+    padding: 24px;
+}
+
+/*=========================================================
+PANELS
+=========================================================*/
+
+.panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+/*=========================================================
+HEADINGS
+=========================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text);
+    font-weight: 600;
+}
+
+p {
+    color: var(--text-secondary);
+}
+
+/*=========================================================
+BUTTONS
+=========================================================*/
+
+.btn-primary-custom {
+    background: var(--primary);
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.btn-primary-custom:hover {
+    background: #2563EB;
+}
+
+/*=========================================================
+SCROLLBAR
+=========================================================*/
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3a4152;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #4a5568;
+}
+
+/*=========================================================
+LOADER
+=========================================================*/
+
+#loader {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999;
+}
+
+.loader-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid var(--border);
+    border-top: 3px solid var(--primary);
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 16px;
+}
+
+#loader h2 {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/*=========================================================
+STATUS COLORS
+=========================================================*/
+
+.status-safe { color: var(--success); }
+.status-low { color: #84CC16; }
+.status-medium { color: var(--warning); }
+.status-high { color: #FB923C; }
+.status-emergency { color: var(--danger); }
+
+/*=========================================================
+LIVE DOT
+=========================================================*/
+
+.live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    display: inline-block;
+    animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/*=========================================================
+UTILITY CLASSES
+=========================================================*/
+
+.text-primary { color: var(--primary) !important; }
+.text-success { color: var(--success) !important; }
+.text-warning { color: var(--warning) !important; }
+.text-danger { color: var(--danger) !important; }
+
+/*=========================================================
+RESPONSIVE
+=========================================================*/
+
+@media (max-width: 1200px) {
+    .main-content {
+        margin-left: 72px;
+        width: calc(100% - 72px);
+    }
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+    .page-content {
+        padding: 16px;
+    }
+}
+
+@media (max-width: 576px) {
+    .page-content {
+        padding: 12px;
+    }
+}

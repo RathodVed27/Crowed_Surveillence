@@ -1,0 +1,11 @@
+{
+    "confusion_matrix": {
+        "tp": 12231,
+        "fp": 54,
+        "fn": 74,
+        "tn": 0
+    },
+    "metrics": {
+        "accuracy": 98.96
+    }
+}

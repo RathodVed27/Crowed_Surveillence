@@ -1,0 +1,117 @@
+/*=====================================================
+NAVBAR
+AI Crowd Surveillance Dashboard
+Author : Ved Rathod
+=====================================================*/
+
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background: #141820;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-left h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+}
+
+.live-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--success);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
+}
+
+.navbar-center .date-time {
+    text-align: center;
+}
+
+.navbar-center .date-time h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.navbar-center .date-time small {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar-right button {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    font-size: 14px;
+}
+
+.navbar-right button:hover {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+    padding: 6px 12px 6px 6px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: background 0.15s ease;
+}
+
+.profile:hover {
+    background: var(--surface);
+}
+
+.profile h6 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+}
+
+.profile small {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .navbar-center { display: none; }
+    .profile div:last-child { display: none; }
+}
+
+@media (max-width: 768px) {
+    .top-navbar { padding: 12px 16px; }
+    .navbar-left h2 { font-size: 14px; }
+}

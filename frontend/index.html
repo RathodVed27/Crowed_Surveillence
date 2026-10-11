@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>AI Crowd Surveillance Dashboard</title>
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/sidebar.css" />
+    <link rel="stylesheet" href="assets/css/navbar.css" />
+    <link rel="stylesheet" href="assets/css/cards.css" />
+    <link rel="stylesheet" href="assets/css/dashboard.css" />
+    <link rel="stylesheet" href="assets/css/modals.css" />
+    <!-- <link rel="stylesheet" href="assets/css/charts.css" />
+    <link rel="stylesheet" href="assets/css/alerts.css" /> -->
+    <!-- <link rel="stylesheet" href="assets/css/sensors.css" />
+    <link rel="stylesheet" href="assets/css/footer.css" />
+    <link rel="stylesheet" href="assets/css/animations.css" />
+    <link rel="stylesheet" href="assets/css/responsive.css" /> -->
+  </head>
+
+  <body>
+    <!-- Loading Screen -->
+
+    <div id="loader">
+      <div class="loader-circle"></div>
+
+      <h2>Initializing AI Surveillance System...</h2>
+    </div>
+
+    <!-- Main Wrapper -->
+
+    <div class="dashboard-wrapper">
+      <!-- ========================================= -->
+      <!-- SIDEBAR -->
+      <!-- ========================================= -->
+
+      <aside class="sidebar">
+        <div class="logo">
+          <i class="fas fa-shield-halved"></i>
+
+          <div>
+            <h4>AI Crowd</h4>
+
+            <span>Surveillance</span>
+          </div>
+        </div>
+
+        <ul class="sidebar-menu">
+          <li class="active" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+            <i class="fas fa-chart-line"></i>
+
+            <span>Dashboard</span>
+          </li>
+
+          <li onclick="document.getElementById('liveSection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-video"></i>
+
+            <span>Live Monitoring</span>
+          </li>
+
+          <li onclick="document.getElementById('mediaSection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-folder-open"></i>
+
+            <span>Media Analysis</span>
+          </li>
+
+          <li onclick="document.getElementById('analyticsSection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chart-area"></i>
+
+            <span>Analytics</span>
+          </li>
+
+          <li onclick="document.getElementById('sensorSection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-microchip"></i>
+
+            <span>Sensors</span>
+          </li>
+
+          <li onclick="document.getElementById('alertSection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-bell"></i>
+
+            <span>Alerts</span>
+          </li>
+
+          <li onclick="document.getElementById('reportsSection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-file-waveform"></i>
+
+            <span>Reports</span>
+          </li>
+
+          <li onclick="document.getElementById('historySection').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-clock-rotate-left"></i>
+
+            <span>History</span>
+          </li>
+
+          <li>
+            <i class="fas fa-gear"></i>
+
+            <span>Settings</span>
+          </li>
+
+          <li>
+            <i class="fas fa-right-from-bracket"></i>
+
+            <span>Logout</span>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- ========================================= -->
+      <!-- MAIN CONTENT -->
+      <!-- ========================================= -->
+
+      <main class="main-content">
+        <!-- ========================================= -->
+        <!-- NAVBAR -->
+        <!-- ========================================= -->
+
+        <nav class="top-navbar">
+          <div class="navbar-left">
+            <div>
+              <h2>AI Crowd Surveillance Dashboard</h2>
+
+              <div class="live-status">
+                <span class="live-dot"></span>
+
+                LIVE
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-center">
+            <div class="date-time">
+              <h5 id="currentTime">00:00:00</h5>
+
+              <small id="currentDate"> Loading... </small>
+            </div>
+          </div>
+
+          <div class="navbar-right">
+            <button id="navBellBtn" title="Notifications">
+              <i class="fas fa-bell"></i>
+              <span id="notifBadge" style="position: absolute; top: 4px; right: 4px; width: 6px; height: 6px; background: var(--primary); border-radius: 50%;"></span>
+            </button>
+
+            <button id="navThemeBtn" title="Toggle Theme">
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+
+            <button id="navSettingsBtn" title="Settings">
+              <i class="fas fa-gear"></i>
+            </button>
+
+            <div class="profile" id="navProfileBtn" title="Administrator Profile">
+              <div style="width: 34px; height: 34px; border-radius: 50%; background: var(--primary); display: flex; align-items: center; justify-content: center; font-weight: 600; color: #fff; font-size: 12px; flex-shrink: 0;">VR</div>
+
+              <div>
+                <h6>Ved Rathod</h6>
+
+                <small>Administrator</small>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- ========================================= -->
+        <!-- PAGE CONTENT -->
+        <!-- ========================================= -->
+
+        <section class="page-content">
+          <!-- ========================================= -->
+          <!-- KPI CARDS -->
+          <!-- ========================================= -->
+
+          <section class="kpi-section">
+            <div class="row g-4">
+              <!-- People Detected -->
+
+              <div class="col-xxl-2 col-xl-4 col-lg-4 col-md-6">
+                <div class="kpi-card card-blue">
+                  <div class="card-top">
+                    <div>
+                      <span class="card-title"> People Detected </span>
+
+                      <h2 id="people">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                      <i class="fas fa-users"></i>
+                    </div>
+                  </div>
+
+                  <div class="progress">
+                    <div id="peopleProgress" class="progress-bar"></div>
+                  </div>
+
+                  <small> Live AI Detection </small>
+                </div>
+              </div>
+
+              <!-- Occupancy -->
+
+              <div class="col-xxl-2 col-xl-4 col-lg-4 col-md-6">
+                <div class="kpi-card card-green">
+                  <div class="card-top">
+                    <div>
+                      <span class="card-title"> Occupancy </span>
+
+                      <h2 id="occupancy">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                      <i class="fas fa-building"></i>
+                    </div>
+                  </div>
+
+                  <div class="progress">
+                    <div id="occupancyProgress" class="progress-bar"></div>
+                  </div>
+
+                  <small> Current Crowd </small>
+                </div>
+              </div>
+
+              <!-- Unique Visitors -->
+
+              <div class="col-xxl-2 col-xl-4 col-lg-4 col-md-6">
+                <div class="kpi-card card-purple">
+                  <div class="card-top">
+                    <div>
+                      <span class="card-title"> Unique Visitors </span>
+
+                      <h2 id="unique">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                      <i class="fas fa-id-card"></i>
+                    </div>
+                  </div>
+
+                  <div class="progress">
+                    <div id="uniqueProgress" class="progress-bar"></div>
+                  </div>
+
+                  <small> Today's Visitors </small>
+                </div>
+              </div>
+
+              <!-- Entry -->
+
+              <div class="col-xxl-2 col-xl-4 col-lg-4 col-md-6">
+                <div class="kpi-card card-orange">
+                  <div class="card-top">
+                    <div>
+                      <span class="card-title"> Entry Count </span>
+
+                      <h2 id="entry">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                      <i class="fas fa-arrow-right-to-bracket"></i>
+                    </div>
+                  </div>
+
+                  <div class="progress">
+                    <div id="entryProgress" class="progress-bar"></div>
+                  </div>
+
+                  <small> Today's Entry </small>
+                </div>
+              </div>
+
+              <!-- Exit -->
+
+              <div class="col-xxl-2 col-xl-4 col-lg-4 col-md-6">
+                <div class="kpi-card card-red">
+                  <div class="card-top">
+                    <div>
+                      <span class="card-title"> Exit Count </span>
+
+                      <h2 id="exit">0</h2>
+                    </div>
+
+                    <div class="card-icon">
+                      <i class="fas fa-arrow-right-from-bracket"></i>
+                    </div>
+                  </div>
+
+                  <div class="progress">
+                    <div id="exitProgress" class="progress-bar"></div>
+                  </div>
+
+                  <small> Today's Exit </small>
+                </div>
+              </div>
+
+              <!-- Risk Score -->
+
+              <div class="col-xxl-2 col-xl-4 col-lg-4 col-md-6">
+                <div class="kpi-card card-danger">
+                  <div class="card-top">
+                    <div>
+                      <span class="card-title"> Risk Score </span>
+
+                      <h2><span id="risk_score"> 0 </span>%</h2>
+                    </div>
+
+                    <div class="card-icon pulse">
+                      <i class="fas fa-triangle-exclamation"></i>
+                    </div>
+                  </div>
+
+                  <div class="progress">
+                    <div id="riskProgress" class="progress-bar"></div>
+                  </div>
+
+                  <small id="status"> Safe </small>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- NEXT SECTION:
+         LIVE CCTV + HEATMAP
+    -->
+          <section class="dashboard-grid" id="liveSection">
+            <!-- Live Camera -->
+
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <i class="fas fa-video"></i>
+
+                  <h4>Live CCTV Monitoring</h4>
+                </div>
+              </div>
+
+              <div class="camera-wrapper" id="cameraContainer">
+                <img id="liveCamera" src="" alt="Camera" />
+
+                <div class="camera-overlay">
+                  <div class="recording" id="recordingStatus">● LIVE</div>
+
+                  <div class="camera-actions">
+                    <button class="camera-btn" id="toggleCameraBtn" onclick="toggleCamera()">
+                      <i class="fas fa-power-off"></i>
+                    </button>
+                    <button class="camera-btn" onclick="captureSnapshot()">
+                      <i class="fas fa-camera"></i>
+                    </button>
+
+                    <button class="camera-btn" onclick="fullscreenCamera()">
+                      <i class="fas fa-expand"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="camera-footer">
+                <div class="camera-status">
+                  <span>
+                    <i class="fas fa-circle"></i>
+
+                    <span id="cameraStatus"> ONLINE </span>
+                  </span>
+
+                  <span id="fps"> 0 FPS </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Heatmap -->
+
+            <div class="dashboard-panel">
+              <div class="panel-header">
+                <div class="panel-title">
+                  <i class="fas fa-fire"></i>
+
+                  <h4>Heatmap</h4>
+                </div>
+              </div>
+
+              <div class="heatmap-box">
+                <img id="heatmapImage" src="" alt="Heatmap" />
+              </div>
+            </div>
+          </section>
+
+          <!-- ==============================
+               AI Media Crowd Analyzer (Image & Video)
+               ============================== -->
+          <section class="media-section" id="mediaSection" style="margin-top: 24px;">
+            <div class="dashboard-panel">
+              <div class="panel-header" style="padding-bottom: 12px; border-bottom: 1px solid var(--border);">
+                <div class="panel-title">
+                  <i class="fas fa-folder-open"></i>
+                  <h4>Media Analyzer</h4>
+                </div>
+                <span style="background: var(--primary-muted); color: var(--primary); padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600;">YOLOv8</span>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; margin-top: 16px;">
+                <!-- Upload Box -->
+                <div style="border: 2px dashed var(--border); border-radius: var(--radius-lg); padding: 32px 20px; text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 260px;">
+                  <i class="fas fa-cloud-upload-alt" style="font-size: 36px; color: var(--text-muted); margin-bottom: 12px;"></i>
+                  <h5 style="color: var(--text); margin-bottom: 6px; font-weight: 600; font-size: 14px;">Choose an Image or Video File</h5>
+                  <p style="color: var(--text-muted); font-size: 12px; margin-bottom: 16px;">JPG, PNG, WEBP, MP4, AVI, MOV</p>
+                  <input type="file" id="mediaFileInput" accept="image/*,video/*" style="display: none;" onchange="handleMediaSelect(event)" />
+                  <button type="button" onclick="document.getElementById('mediaFileInput').click()" style="background: var(--primary); color: #fff; border: none; padding: 8px 20px; border-radius: var(--radius); font-weight: 500; cursor: pointer; font-size: 13px;">
+                    <i class="fas fa-file-image" style="margin-right: 6px;"></i> Browse File
+                  </button>
+                  <div id="mediaFileInfo" style="margin-top: 12px; color: var(--success); font-size: 12px; font-weight: 500; display: none;"></div>
+                  <button type="button" id="mediaAnalyzeBtn" onclick="analyzeSelectedMedia()" style="margin-top: 10px; background: var(--success); color: #fff; border: none; padding: 8px 20px; border-radius: var(--radius); font-weight: 500; cursor: pointer; display: none; font-size: 13px;">
+                    <i class="fas fa-bolt" style="margin-right: 6px;"></i> Run Detection
+                  </button>
+                </div>
+
+                <!-- Preview -->
+                <div style="background: #0c0f15; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; display: flex; flex-direction: column; min-height: 260px; position: relative;">
+                  <div id="mediaPlaceholder" style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-muted); padding: 32px; text-align: center;">
+                    <i class="fas fa-image" style="font-size: 32px; margin-bottom: 8px; opacity: 0.4;"></i>
+                    <p style="margin: 0; font-size: 13px;">Detection result will appear here.</p>
+                  </div>
+                  <img id="mediaResultImg" src="" alt="Result" style="display: none; width: 100%; max-height: 320px; object-fit: contain; background: #0c0f15;" />
+                  
+                  <div id="mediaMetricsBar" style="background: var(--surface); border-top: 1px solid var(--border); padding: 12px 16px; display: flex; justify-content: space-around; align-items: center; font-size: 12px;">
+                    <div>
+                      <span style="color: var(--text-muted); font-weight: 500; text-transform: uppercase; font-size: 10px;">People:</span>
+                      <strong id="mediaCountVal" style="color: var(--text); font-size: 16px; margin-left: 6px;">-</strong>
+                    </div>
+                    <div>
+                      <span style="color: var(--text-muted); font-weight: 500; text-transform: uppercase; font-size: 10px;">Detection Confidence:</span>
+                      <strong id="mediaAccuracyVal" style="color: var(--text); font-size: 16px; margin-left: 6px;">-</strong>
+                    </div>
+                    <div>
+                      <span style="color: var(--text-muted); font-weight: 500; text-transform: uppercase; font-size: 10px;">Risk:</span>
+                      <strong id="mediaRiskVal" style="color: var(--warning); font-size: 16px; margin-left: 6px;">-</strong>
+                    </div>
+                    <div>
+                      <span id="mediaStatusBadge" style="background: rgba(34,197,94,0.1); color: var(--success); padding: 3px 10px; border-radius: 4px; font-weight: 600; font-size: 10px; text-transform: uppercase;">READY</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="chart-section" id="analyticsSection">
+            <div class="chart-grid">
+              <div class="chart-card">
+                <div class="chart-header">
+                  <h5>People Count</h5>
+                </div>
+
+                <div class="chart-body">
+                  <canvas id="peopleChart"></canvas>
+                </div>
+              </div>
+
+              <div class="chart-card">
+                <div class="chart-header">
+                  <h5>Occupancy</h5>
+                </div>
+
+                <div class="chart-body">
+                  <canvas id="occupancyChart"></canvas>
+                </div>
+              </div>
+
+              <div class="chart-card">
+                <div class="chart-header">
+                  <h5>Risk Score</h5>
+                </div>
+
+                <div class="chart-body">
+                  <canvas id="riskChart"></canvas>
+                </div>
+              </div>
+
+              <div class="chart-card">
+                <div class="chart-header">
+                  <h5>Entry vs Exit</h5>
+                </div>
+
+                <div class="chart-body">
+                  <canvas id="entryExitChart"></canvas>
+                </div>
+              </div>
+
+              <div class="chart-card large">
+                <div class="chart-header">
+                  <h5>Crowd Trend</h5>
+                </div>
+
+                <div class="chart-body">
+                  <canvas id="trendChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="sensor-section" id="sensorSection">
+            <div class="sensor-grid">
+              <div class="sensor-card">
+                <h5>Piezo Sensor</h5>
+
+                <h2 id="piezo">0</h2>
+                <small style="color: #94A3B8; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; display: block; text-transform: uppercase; margin-top: 5px;">STRENGTH</small>
+              </div>
+
+              <div class="sensor-card">
+                <h5>IR Sensor</h5>
+
+                <h2 id="ir">0</h2>
+                <small style="color: #94A3B8; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; display: block; text-transform: uppercase; margin-top: 5px;">PASSAGE STATUS</small>
+              </div>
+
+              <div class="sensor-card">
+                <h5>SW420 Sensor</h5>
+
+                <h2 id="sw420">0</h2>
+                <small style="color: #94A3B8; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; display: block; text-transform: uppercase; margin-top: 5px;">VIBRATION STATUS</small>
+              </div>
+            </div>
+          </section>
+          <section class="alert-section" id="alertSection">
+            <div class="alert-panel">
+              <div class="alert-header">
+                <h4>Alert Center</h4>
+              </div>
+
+              <div id="alertList" class="alert-list"></div>
+            </div>
+          </section>
+          <section class="logs-section" id="reportsSection">
+            <div class="logs-panel">
+              <div class="logs-header">
+                <h4>System Logs</h4>
+              </div>
+
+              <div id="logs" class="logs-body"></div>
+            </div>
+          </section>
+          <section class="status-section">
+            <div class="status-grid">
+              <div class="status-card">
+                <h5>Camera</h5>
+
+                <h2 id="systemCameraStatus">ONLINE</h2>
+              </div>
+
+              <div class="status-card">
+                <h5>AI Model</h5>
+
+                <h2 id="aiStatus">READY</h2>
+              </div>
+
+              <div class="status-card">
+                <h5>Database</h5>
+
+                <h2 id="databaseStatus">CONNECTED</h2>
+              </div>
+
+              <div class="status-card">
+                <h5>ESP8266</h5>
+
+                <h2 id="espStatus">CONNECTED</h2>
+              </div>
+            </div>
+          </section>
+          <section class="table-section" id="historySection">
+            <div class="table-card">
+              <table class="alert-table">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+
+                    <th>Alert</th>
+
+                    <th>Risk</th>
+
+                    <th>People</th>
+
+                    <th>Sensor</th>
+                  </tr>
+                </thead>
+
+                <tbody id="historyTable"></tbody>
+              </table>
+            </div>
+          </section>
+          <footer class="dashboard-footer">
+            <div class="footer-container">
+              <div class="footer-left">
+                <h4>AI Crowd Surveillance System</h4>
+
+                <p>Developed by Ved Rathod</p>
+              </div>
+
+              <div class="footer-right">Version 1.0</div>
+            </div>
+          </footer>
+        </section>
+      </main>
+    </div>
+
+    <!-- Bootstrap -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript -->
+
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/charts.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/camera.js"></script>
+    <script src="assets/js/alerts.js"></script>
+    <script src="assets/js/sensors.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/modals.js"></script>
+  </body>
+</html>

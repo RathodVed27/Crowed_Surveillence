@@ -1,0 +1,171 @@
+/*=====================================================
+SIDEBAR
+AI Crowd Surveillance Dashboard
+Author : Ved Rathod
+=====================================================*/
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: #141820;
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 999;
+    transition: width 0.2s ease;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    padding: 24px 20px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+}
+
+.logo i {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #fff;
+    background: var(--primary);
+    flex-shrink: 0;
+}
+
+.logo h4 {
+    color: var(--text);
+    font-size: 15px;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+
+.logo span {
+    color: var(--text-muted);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+    margin: 8px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-menu li {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    margin: 2px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    color: var(--text-secondary);
+    font-size: 13px;
+}
+
+.sidebar-menu li i {
+    width: 32px;
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+}
+
+.sidebar-menu li span {
+    font-weight: 500;
+}
+
+.sidebar-menu li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text);
+}
+
+.sidebar-menu li:hover i {
+    color: var(--text-secondary);
+}
+
+.sidebar-menu li.active {
+    color: var(--primary);
+    background: var(--primary-muted);
+}
+
+.sidebar-menu li.active i {
+    color: var(--primary);
+}
+
+.sidebar-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.system-status {
+    background: var(--surface);
+    border-radius: var(--radius);
+    padding: 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+}
+
+.system-status h5 {
+    color: var(--text);
+    margin-bottom: 6px;
+    font-size: 12px;
+}
+
+.system-status p {
+    color: var(--text-muted);
+    font-size: 11px;
+}
+
+.status-online {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.status-online span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--success);
+    margin-right: 8px;
+}
+
+/* Scrollbar */
+.sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #2a3142;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .sidebar { width: 72px; }
+    .logo div { display: none; }
+    .logo { justify-content: center; padding: 20px 0; }
+    .logo i { margin-right: 0; }
+    .sidebar-menu li { justify-content: center; padding: 12px 0; }
+    .sidebar-menu li span { display: none; }
+    .sidebar-menu li i { width: auto; font-size: 18px; }
+    .sidebar-footer { display: none; }
+}
+
+@media (max-width: 768px) {
+    .sidebar { left: -260px; }
+    .sidebar.show { left: 0; }
+}

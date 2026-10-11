@@ -1,0 +1,22 @@
+# =========================================================
+# AI Crowd Surveillance System — Enterprise Requirements
+# Compatible with Python 3.9+ / Windows & Linux Production
+# =========================================================
+
+# Core Web & API Framework
+Flask>=3.0.0
+Flask-Cors>=4.0.0
+waitress>=3.0.0
+Werkzeug>=3.0.0
+
+# Computer Vision & AI Analytics
+opencv-python>=4.8.0
+numpy>=1.24.0
+scipy>=1.10.0
+ultralytics>=8.0.0
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Hardware & System Telemetry
+pyserial>=3.5
+psutil>=5.9.0

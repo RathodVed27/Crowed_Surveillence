@@ -1,0 +1,95 @@
+/*=====================================================
+KPI CARDS
+AI Crowd Surveillance Dashboard
+Author : Ved Rathod
+=====================================================*/
+
+.kpi-section {
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    border-left: 4px solid var(--border);
+    transition: border-color 0.15s ease;
+}
+
+.kpi-card.card-blue { border-left-color: #3B82F6; }
+.kpi-card.card-green { border-left-color: #22c55e; }
+.kpi-card.card-purple { border-left-color: #8B5CF6; }
+.kpi-card.card-orange { border-left-color: #f59e0b; }
+.kpi-card.card-red { border-left-color: #ef4444; }
+.kpi-card.card-danger { border-left-color: #ef4444; }
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card-top .card-title {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.card-top h2 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+}
+
+.card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.card-blue .card-icon { background: rgba(59, 130, 246, 0.12); color: #3B82F6; }
+.card-green .card-icon { background: rgba(34, 197, 94, 0.12); color: #22c55e; }
+.card-purple .card-icon { background: rgba(139, 92, 246, 0.12); color: #8B5CF6; }
+.card-orange .card-icon { background: rgba(245, 158, 11, 0.12); color: #f59e0b; }
+.card-red .card-icon { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+.card-danger .card-icon { background: rgba(239, 68, 68, 0.12); color: #ef4444; }
+
+.kpi-card .progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+    margin-top: 16px;
+    overflow: hidden;
+}
+
+.kpi-card .progress-bar {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.4s ease;
+}
+
+.card-blue .progress-bar { background: #3B82F6; }
+.card-green .progress-bar { background: #22c55e; }
+.card-purple .progress-bar { background: #8B5CF6; }
+.card-orange .progress-bar { background: #f59e0b; }
+.card-red .progress-bar { background: #ef4444; }
+.card-danger .progress-bar { background: #ef4444; }
+
+.kpi-card small {
+    display: block;
+    margin-top: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+}

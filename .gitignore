@@ -1,0 +1,53 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Model weights & Training checkpoints (>100MB exceeds GitHub limits)
+*.pt
+*.pth
+*.onnx
+*.engine
+*.tflite
+runs/
+
+# Large Datasets (>15GB)
+backend/CrowdDataset*
+backend/CCTV_Dataset*
+backend/*Dataset*
+dataset/images/
+dataset/labels/
+
+# SQLite databases & Local data stores (>100MB crowd.db)
+*.db
+*.sqlite
+*.sqlite3
+backend/database/crowd.db
+
+# Logs & temporary files
+*.log
+logs/
+backend/logs/
+output/
+backend/uploads/
+backend/exports/
+backend/reports/
+
+# Environment and sensitive config
+.env
+.env.local
+.env.*.local
+
+# IDE & OS files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db

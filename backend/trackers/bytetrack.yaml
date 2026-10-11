@@ -1,0 +1,14 @@
+# ByteTrack configuration — optimized for dense crowd tracking
+# Lower thresholds help detect partially occluded heads
+
+tracker_type: bytetrack
+
+track_high_thresh: 0.4
+track_low_thresh: 0.05
+new_track_thresh: 0.5
+
+track_buffer: 45
+
+match_thresh: 0.85
+
+fuse_score: True
